@@ -1,0 +1,16 @@
+Issues: 
+  - View Profile > Edit Profile Button needs functionality
+  - Figure out how to fix LinkedIn Links
+
+2021-10-29
+  AM  - Added View Profile modal functionality
+      - Next: Edit Profile modal
+  PM  - Added Edit Profile modal functionality
+      - Next: Add Edit Profile form to the Modal
+2021-10-30
+  AM  -Added delete profile functionality
+      -Next: Add Edit Profile form to the Modal
+2021-11-01
+  AM - 
+  
+

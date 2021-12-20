@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Social Library is a way to track your social media follows. Add a list of profiles that you follow and include their profile information.">
+  <meta name="author" content="Justin Duplain">
+  <title>Follow Library</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link href="styles.css" rel="stylesheet">
+  <script defer src="index.js"></script>
+</head>
+<body>
+<header>
+  <div class="collapse bg-dark" id="navbarHeader">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-8 col-md-7 py-4">
+          <h4 class="text-white">About</h4>
+          <p class="text-muted">Follow Library is a way to track your social media follows. Add a list of people & organizations and see all of their social accounts in one place.</p>
+        </div>
+        <div class="col-sm-4 offset-md-1 py-4">
+          <h4 class="text-white">Contact</h4>
+          <ul class="list-unstyled">
+            <li><a href="https://www.linkedin.com/in/justinduplain/" class="text-white">LinkedIn</a></li>
+            <li><a href="https://github.com/pmentropy" class="text-white">Github</a></li>
+            <li><a href="mailto:justin.duplain@gmail.com" class="text-white">Email me</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="navbar navbar-dark bg-dark shadow-sm">
+    <div class="container">
+      <a href="#" class="navbar-brand d-flex align-items-center">
+        <!-- <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" class="me-2" viewBox="0 0 24 24"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+        -->
+        <strong>Follow Library</strong>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="album py-5 bg-light">
+    <div class="container">
+      <div class="row row-cols-1 row-cols-sm-3 row-cols-md-4 g-3" id="profile-container">
+        <div class="col d-flex align-items-stretch order-1">
+          <div class="card shadow-sm flex-fill">
+            <div class="card-body d-flex flex-column justify-content-center align-items-center">
+              <h3 class="card-text text-center m-4">Add New Profile</h3>
+              <div class="align-items-center">
+                <!-- Button triggers Add Profile Modal -->
+                <button type="button" class="btn btn-med btn-outline-secondary add-new" data-bs-toggle="modal" data-bs-target="#addProfileModal">Add New</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer class="text-muted py-5">
+  <div class="container">
+    <p class="float-end mb-1">
+      <a href="#">Back to top</a>
+    </p>
+    <p class="mb-0"><a href="index.html">Follow Library</a></p>
+  </div>
+</footer>
+
+<!-- MODALS -->
+
+<!-- Add Profile Modal -->
+<div class="modal fade" id="addProfileModal" tabindex="-1" aria-labelledby="addProfileModal" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addProfileModalLabel">Create a Follow Profile</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form id="add-profile">
+          <div class="mb-3">
+            <label for="profileHandle" class="form-label visually-hidden-focusable">Profile Handle</label>
+            <div class="input-group">
+              <div class="input-group-text">@</div>
+              <input type="text" placeholder="profile_handle" class="form-control" id="profileHandle" pattern="[@a-zA-Z0-9]+" required aria-describedby="handleHelp">
+            </div>
+            <div id="handleHelp" class="form-text visually-hidden-focusable">A unique ID.
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="profileName" class="form-label visually-hidden-focusable">Profile Name</label>
+            <input type="text" class="form-control" id="profileName" placeholder="Profile Name" aria-describedby="nameHelp" required>
+            <div id="nameHelp" class="form-text visually-hidden-focusable">Profile name.</div>
+          </div>
+          <div class="mb-3">
+            <label for="profileImg" class="form-label visually-hidden-focusable" >Profile image URL</label>
+            <input type="url" placeholder="Profile Image URL. Ex: https://example.com/img.jpg" class="form-control" id="profileImg" aria-describedby="imgHelp">
+            <div id="imgHelp" class="form-text">Optional. Need somewhere to upload your profile image? Try <a href="https://imgur.com/" target="_blank">imgur</a>.</div>
+          </div>
+          <select class="form-select mb-3" aria-label="Profile type select menu" id="profileType">
+            <option selected>Individual</option>
+            <option value="organization">Organization</option>
+          </select>
+          <div class="mb-3 form-check">
+            <input type="checkbox" class="form-check-input" id="followCheck">
+            <label class="form-check-label" for="followCheck">Follow this profile</label>
+          </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <button type="submit" id="add-profile-submit"  data-bs-target="#addSocialsModal" class="btn btn-primary">Add Profile</button>
+      </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end Add Profile Modal-->
+
+<!-- Add Socials Modal -->
+<div class="modal fade" id="addSocialsModal" tabindex="-1" aria-labelledby="addSocialsModal" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header p-3">
+        <div><h4 class="modal-title"><span id="custom-name"></span></h4></div>
+        
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="container-fluid">
+          <div>
+            <h5>Add some socials?</h5>
+            <p>Optional, you can always do this later.</p>
+         </div>
+          <form id="add-socials">
+            <div id="social-select-sect">
+              <div class="row">
+                <div class="col-sm-4">
+                  <select class="form-select mb-3" aria-label="Social account select menu" id="socialSelect1" required>
+                    <option value="">Select...</option>
+                    <option value="facebook">Facebook</option>
+                    <option value="twitter">Twitter</option>
+                    <option value="instagram">Instagram</option>
+                    <option value="linkedin">LinkedIn</option>
+                    <option value="github">GitHub</option>
+                  </select>
+                </div>
+                <div class="col-sm-7">
+                  <label for="socialHandle1" class="form-label visually-hidden-focusable">Handle</label>
+                  <div class="input-group">
+                    <div class="input-group-text">@</div>
+                    <input type="text" placeholder="profile_handle" class="form-control" id="socialHandle1" pattern="[@a-zA-Z0-9]+" required>
+                  </div>
+                </div>
+                <div class="col-sm-1"></div>
+              </div>
+            </div>
+            <div class="row">
+              <p><a href="#" class="m-2" id="add-social-row">Add More</a></p>
+            </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Add Later</button>
+        <button type="submit" id="add-socials-submit" class="btn btn-primary">Submit</button>
+        </form>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end Add Socials Modal-->
+
+<!-- View Profile Modal -->
+<div class="modal fade" id="viewProModal" tabindex="-1" aria-labelledby="viewProModal" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header p-3">
+          <div><h5 class="modal-title">Modal Title</h5></div>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+          ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" id="editProButton">Edit Profile</button>
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end View Profile Modal-->
+
+<!-- Edit Profile Modal -->
+<div class="modal fade" id="editProModal" tabindex="-1" aria-labelledby="editProModal" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-xl">
+    <div class="modal-content">
+        <div class="modal-header p-3">
+            <div><h5 class="modal-title">Modal Title</h5></div>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        
+        <div class="modal-body">
+              ...
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Save Changes</button>
+        </div>
+    </div>
+  </div>
+</div>
+<!-- end Edit Profile Modal-->
+
+<!-- Bootstrap Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+</body>
+</html>
